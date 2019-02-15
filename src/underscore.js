@@ -10,6 +10,6 @@ _.each = function(list, callback) {
       callback(list[key], key, list);
     }
   }
-}
+};
 
 module.exports = _;
