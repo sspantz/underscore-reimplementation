@@ -1,2 +1,2 @@
-# underscore-reimplementation
-a reimplementation of undersocre.js
+# underscore library reimplementation
+A reimplementation of undersocre.js
