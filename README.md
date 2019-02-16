@@ -1,5 +1,5 @@
-# underscore.js library reimplementation
-A reimplementation of undersocre.js
+# Introduction
+underscore.js library reimplementation
 ## Usage
 ```javascript
 const _ = require('underscore');
