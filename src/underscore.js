@@ -34,4 +34,22 @@ _.map = function(list, callback) {
   return storage;
 };
 
+/**
+ * _.filter(list, predicate, [context]) Alias: select Looks
+ *  through each value in the list, returning an array of all
+ *  the values that pass a truth test (predicate). predicate
+ *  is transformed through iteratee to facilitate shorthand 
+ * syntaxes.
+ */
+
+_.filter = function(list, callback) {
+  const storage = [];
+  _.each(list, (value, key, list) => {
+    if (callback(value, key, list) === true) {
+      storage.push(value);
+    }
+  })
+  return storage;
+}
+
 module.exports = _;

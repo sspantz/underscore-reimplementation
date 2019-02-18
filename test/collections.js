@@ -54,4 +54,32 @@ describe('Collections', function() {
     })
   });
 
+  describe('Filter Test', function() {
+
+    const list = [1, 2, 3, 4, 5];
+
+    it('should return [1, 2, 3]', function() {
+      const list2 = _.filter(list, function(value) {
+        return value < 4;
+      })
+      expect(list2.length).to.equal(3);
+      expect(list2).to.be.an('array').that.includes(1, 2, 3);
+    });
+
+    it('should return [4, 5]', function() {
+      const list2 = _.filter(list, function(value) {
+        return value > 3; 
+      })
+    });
+  
+
+    it('should return [2, 4]', function() {
+      const list2 = _.filter(list, function(value) {
+        return value % 2 === 0;
+      });
+      expect(list2.length).to.equal(2);
+      expect(list2).to.be.an('array').that.includes(2, 4);
+    });
+  })
+
 });
