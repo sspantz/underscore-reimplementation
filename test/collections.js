@@ -1,4 +1,4 @@
-const _ = require('../src/underscore');
+const _ = require('../src/underscore')
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 
@@ -80,6 +80,31 @@ describe('Collections', function() {
       expect(list2.length).to.equal(2);
       expect(list2).to.be.an('array').that.includes(2, 4);
     });
+  })
+
+  describe('Reduce Test', function() {
+
+    const list = [1, 2, 3, 4, 5];
+    const obj = {'a': 1, 'b': 2, 'c': 1, 'd':2, 'e': 3};
+
+    it("should return 15", function() {
+      const sum = _.reduce(list, (memo, value, key) => {
+        return memo + value;
+      })
+      expect(sum).to.equal(15);
+    })
+
+    it("should return {1: [a, c], 2: [b, d], 3: [e]}", function() {
+      const result = _.reduce(obj, (memo, value, key) => {
+        (memo[value] || (memo[value] = [])).push(key);
+        return memo;
+      }, {})
+      expect(result).to.be.an('object');
+      expect(result[1]).includes('a', 'c');
+      expect(result[2]).includes('b', 'd');
+      expect(result[3]).includes('e');
+    })
+
   })
 
 });

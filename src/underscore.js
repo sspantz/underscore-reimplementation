@@ -35,10 +35,10 @@ _.map = function(list, callback) {
 };
 
 /**
- * _.filter(list, predicate, [context]) Alias: select Looks
- *  through each value in the list, returning an array of all
- *  the values that pass a truth test (predicate). predicate
- *  is transformed through iteratee to facilitate shorthand 
+ * _.filter(list, predicate, [context]) Alias: select
+ * Looks through each value in the list, returning an array of all
+ * the values that pass a truth test (predicate). predicate
+ * is transformed through iteratee to facilitate shorthand 
  * syntaxes.
  */
 
@@ -51,5 +51,45 @@ _.filter = function(list, callback) {
   })
   return storage;
 }
+
+_.select = _.filter
+
+/**
+ * _.reduce(list, iteratee, [memo], [context]) Aliases: inject, foldl
+ * Also known as inject and foldl, reduce boils down a list of values 
+ * into a single value. Memo is the initial state of the reduction, and
+ * each successive step of it should be returned by iteratee. The
+ * iteratee is passed four arguments: the memo, then the value and index
+ * (or key) of the iteration, and finally a reference to the entire list. 
+ * 
+ * If no memo is passed to the initial invocation of reduce, the iteratee 
+ * is not invoked on the first element of the list. The first element is 
+ * instead passed as the memo in the invocation of the iteratee on the
+ * next element in the list.
+ */
+_.reduce = function(list, callback, memo) {
+  let result = memo;
+  if (Array.isArray(list)) {
+    for (let i = 0; i < list.length; i++) {
+      if (i === 0 && result === undefined) {
+        result = list[i];
+      } else {
+        result = callback(result, list[i], i);
+      }
+    } 
+  } else {
+    for (let key in list) {
+      if (result === undefined) {
+        result = list[key];
+      } else {
+        result = callback(result, list[key], key);
+      }
+    }
+  }
+  return result;
+}
+
+_.inject = _.reduce
+_.foldl  = _.reduce
 
 module.exports = _;
