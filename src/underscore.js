@@ -98,7 +98,16 @@ _.foldl  = _.reduce
  */
 
 _.reduceRight = function(list, callback, memo) {
-  list.reverse();
+  if (Array.isArray(list)) {
+    list.reverse();
+  } else {
+    let len = 0;
+    for (let key in list) {
+      len++;
+    };
+    list.length = len;
+    Array.prototype.reverse.call(list);
+  };
   return _.reduce(list, callback, memo);
 }
 

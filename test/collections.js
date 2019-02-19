@@ -111,6 +111,7 @@ describe('Collections', function() {
 
     const list = [[0, 1], [2, 3], [4, 5]];
     const letters = ['a', 'b', 'c', 'd', 'e'];
+    const obj = {'a': 1, 'b': 2, 'c': 1, 'd':2, 'e': 3};
 
     it("should return [4, 5, 2, 3, 0, 1]", function() {
       let flat = _.reduceRight(list, function(a, b) {
@@ -126,6 +127,16 @@ describe('Collections', function() {
       expect(result).to.equal('edcba');
     });
 
+    it("should return {1: [a, c], 2: [b, d], 3: [e]}", function() {
+      const result = _.reduceRight(obj, (memo, value, key) => {
+        (memo[value] || (memo[value] = [])).push(key);
+        return memo;
+      }, {})
+      expect(result).to.be.an('object');
+      expect(result[1]).includes('a', 'c');
+      expect(result[2]).includes('b', 'd');
+      expect(result[3]).includes('e');
+    });
   })
 
 });
