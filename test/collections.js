@@ -107,4 +107,25 @@ describe('Collections', function() {
 
   })
 
+  describe('ReduceRight Test', function() {
+
+    const list = [[0, 1], [2, 3], [4, 5]];
+    const letters = ['a', 'b', 'c', 'd', 'e'];
+
+    it("should return [4, 5, 2, 3, 0, 1]", function() {
+      let flat = _.reduceRight(list, function(a, b) {
+        return a.concat(b); 
+      }, []);
+      expect(flat).to.eql([4, 5, 2, 3, 0, 1]);
+    });
+
+    it("should return 'edcba'", function() {
+      let result = _.reduceRight(letters, function(memo, value) {
+        return memo+value;
+      })
+      expect(result).to.equal('edcba');
+    });
+
+  })
+
 });

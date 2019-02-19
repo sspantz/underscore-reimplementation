@@ -92,4 +92,14 @@ _.reduce = function(list, callback, memo) {
 _.inject = _.reduce
 _.foldl  = _.reduce
 
+/**
+ * The right-associative version of reduce. Foldr is not as useful 
+ * in JavaScript as it would be in a language with lazy evaluation.
+ */
+
+_.reduceRight = function(list, callback, memo) {
+  list.reverse();
+  return _.reduce(list, callback, memo);
+}
+
 module.exports = _;
