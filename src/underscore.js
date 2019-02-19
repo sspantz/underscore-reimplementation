@@ -107,6 +107,7 @@ _.reduceRight = function(list, callback, memo) {
     };
     list.length = len;
     Array.prototype.reverse.call(list);
+    delete list.length;
   };
   return _.reduce(list, callback, memo);
 }
