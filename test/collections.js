@@ -29,7 +29,7 @@ describe('Collections', function() {
       _.each(list, (value, key, list) => {
         list2.push(value);
       });
-      expect(list2).to.be.an('array').that.includes(1, 2, 3);
+      expect(list2).to.eql([1, 2, 3]);
     });
   });
 
@@ -41,16 +41,14 @@ describe('Collections', function() {
     it('should return [3, 6, 9] from [1, 2, 3]', function() {
       const list2  = _.map(list, function(num) { return num * 3; });
       const length = list2.length;
-      expect(length).to.be.equal(3);
-      expect(list2).to.be.an('array').that.includes(3, 6, 9);
+      expect(list2).to.eql([3, 6, 9]);
     });
 
     it('should return [3, 6, 9] from {one: 1, two: 2, three: 3}', function() {
       const list2 = _.map(dic, (item, key, list) => {
         return item * 3;
       });
-      expect(list2.length).to.equal(3);
-      expect(list2).to.be.an('array').that.includes(3, 6, 9);
+      expect(list2).to.eql([3, 6, 9]);
     })
   });
 
@@ -62,8 +60,7 @@ describe('Collections', function() {
       const list2 = _.filter(list, function(value) {
         return value < 4;
       })
-      expect(list2.length).to.equal(3);
-      expect(list2).to.be.an('array').that.includes(1, 2, 3);
+      expect(list2).to.eql([1, 2, 3]);
     });
 
     it('should return [4, 5]', function() {
@@ -77,8 +74,7 @@ describe('Collections', function() {
       const list2 = _.filter(list, function(value) {
         return value % 2 === 0;
       });
-      expect(list2.length).to.equal(2);
-      expect(list2).to.be.an('array').that.includes(2, 4);
+      expect(list2).to.eql([2, 4]);
     });
   })
 
@@ -99,10 +95,7 @@ describe('Collections', function() {
         (memo[value] || (memo[value] = [])).push(key);
         return memo;
       }, {})
-      expect(result).to.be.an('object');
-      expect(result[1]).includes('a', 'c');
-      expect(result[2]).includes('b', 'd');
-      expect(result[3]).includes('e');
+      expect(result).to.eql({1: ['a', 'c'], 2: ['b', 'd'], 3: ['e']})
     })
 
   })
@@ -132,10 +125,8 @@ describe('Collections', function() {
         (memo[value] || (memo[value] = [])).push(key);
         return memo;
       }, {})
-      expect(result).to.be.an('object');
-      expect(result[1]).includes('a', 'c');
-      expect(result[2]).includes('b', 'd');
-      expect(result[3]).includes('e');
+      console.log(result);
+      expect(result).to.eql({1: ['a', 'c'], 2: ['b', 'd'], 3: ['e']})
     });
   })
 
