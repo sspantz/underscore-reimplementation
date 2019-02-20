@@ -112,4 +112,30 @@ _.reduceRight = function(list, callback, memo) {
   return _.reduce(list, callback, memo);
 }
 
+/**
+ * Looks through each value in the list, returning the first one that 
+ * passes a truth test (predicate), or undefined if no value passes the 
+ * test. The function returns as soon as it finds an acceptable element, 
+ * and doesn't traverse the entire list. predicate is transformed through
+ *  iteratee to facilitate shorthand syntaxes.
+ */
+
+_.find = function(list, callback) {
+  let result;
+  let obj = {};
+  if (Array.isArray(list)) {
+    for (let i = 0; i < list.length; i++) {
+      if (callback(list[i], i, list)) { return list[i]; }
+    }
+  } else {
+    for (let key in list) {
+      if (callback(list[key], key, list)) {
+        obj[key] = list[key];
+        return obj;
+      }
+    }
+  }
+  return undefined;
+}
+
 module.exports = _;

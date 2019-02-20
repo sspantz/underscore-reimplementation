@@ -125,9 +125,32 @@ describe('Collections', function() {
         (memo[value] || (memo[value] = [])).push(key);
         return memo;
       }, {})
-      console.log(result);
       expect(result).to.eql({1: ['a', 'c'], 2: ['b', 'd'], 3: ['e']})
     });
+  })
+
+  describe('Find Test', function() {
+
+    it("should return undefined", function() {
+      const result = _.find([1, 3, 5], function(num) {
+        return num % 2 == 0;
+      });
+      expect(result).to.equal(undefined);
+    })
+
+    it("should return 2", function() {
+      const result = _.find([1, 2, 3, 4, 5, 6], function(num) {
+        return num % 2 == 0;
+      });
+      expect(result).to.equal(2);
+    })
+
+    it("should return {b: 2}", function() {
+      const result = _.find({a: 1, b: 2, c: 1}, function(value, key) {
+        return value > 1;
+      })
+      expect(result).to.eql({b: 2});
+    })
   })
 
 });
