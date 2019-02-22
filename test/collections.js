@@ -65,10 +65,10 @@ describe('Collections', function() {
 
     it('should return [4, 5]', function() {
       const list2 = _.filter(list, function(value) {
-        return value > 3; 
+        return value > 3;
       })
     });
-  
+
 
     it('should return [2, 4]', function() {
       const list2 = _.filter(list, function(value) {
@@ -108,7 +108,7 @@ describe('Collections', function() {
 
     it("should return [4, 5, 2, 3, 0, 1]", function() {
       let flat = _.reduceRight(list, function(a, b) {
-        return a.concat(b); 
+        return a.concat(b);
       }, []);
       expect(flat).to.eql([4, 5, 2, 3, 0, 1]);
     });
@@ -151,6 +151,45 @@ describe('Collections', function() {
       })
       expect(result).to.eql({b: 2});
     })
+  })
+
+  describe('Every Test', function() {
+
+    it("should return false", function() {
+      const result = _.every([2, 4, 5], function(num) {
+        return num % 2 == 0;
+      });
+      expect(result).to.equal(false);
+    });
+
+    it("should return true", function() {
+      const result = _.every([2, 4, 6], function(num) {
+        return num % 2 == 0;
+      });
+      expect(result).to.equal(true);
+    });
+
+    it("should return false", function() {
+      const result = _.every([2, 4, 6], function(num, index) {
+        return num === index;
+      });
+      expect(result).to.equal(false);
+    });
+
+    it("should return false", function() {
+      const result = _.every({a: 1, b: 2, c: 3}, function(value, key) {
+        return key === 'a' ;
+      });
+      expect(result).to.equal(false);
+    });
+
+    it("should return true", function() {
+      const result = _.every({a: 1, b: 1, c: 1}, function(value, key) {
+        return value === 1 ;
+      });
+      expect(result).to.equal(true);
+    });
+
   })
 
 });

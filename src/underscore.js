@@ -40,7 +40,7 @@
         callback(list[i], i, list);
       }
     } else {
-      for (key in list) {
+      for (let key in list) {
         callback(list[key], key, list);
       }
     }
@@ -172,6 +172,20 @@
       }
     }
     return undefined;
+  }
+
+  _.every = function(list, callback) {
+    let result = true;
+    if (Array.isArray(list)) {
+      for (let i = 0; i < list.length; i++) {
+        if (callback(list[i], i , list) === false) return false;
+      }
+    } else {
+      for (let key in list) {
+        if (callback(list[key], key, list) === false) return false;
+      }
+    }
+    return result;
   }
 
 }());
