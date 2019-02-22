@@ -9,11 +9,11 @@
     (typeof global == 'object' && global.global == global && global) ||
     this || {};
 
-  
-  var previousUnderscore = root._; 
+
+  var previousUnderscore = root._;
 
   // Create a safe reference to the Underscore object for use below.
-  var _ = function(obj) {
+  var _ = function (obj) {
     if (obj instanceof _) return obj;
     if (!(this instanceof _)) return new _(obj);
     this._wrapped = obj;
@@ -47,10 +47,10 @@
   };
 
   /**
-   * map_.map(list, iteratee, [context]) 
-   * Produces a new array of values by mapping each value in list through a 
-   * transformation function (iteratee). The iteratee is passed three 
-   * arguments: the value, then the index (or key) of the iteration, and 
+   * map_.map(list, iteratee, [context])
+   * Produces a new array of values by mapping each value in list through a
+   * transformation function (iteratee). The iteratee is passed three
+   * arguments: the value, then the index (or key) of the iteration, and
    * finally a reference to the entire list.
    * _.map([1, 2, 3], function(num){ return num * 3; });
    * => [3, 6, 9]
@@ -72,7 +72,7 @@
    * _.filter(list, predicate, [context]) Alias: select
    * Looks through each value in the list, returning an array of all
    * the values that pass a truth test (predicate). predicate
-   * is transformed through iteratee to facilitate shorthand 
+   * is transformed through iteratee to facilitate shorthand
    * syntaxes.
    */
 
@@ -90,14 +90,14 @@
 
   /**
    * _.reduce(list, iteratee, [memo], [context]) Aliases: inject, foldl
-   * Also known as inject and foldl, reduce boils down a list of values 
+   * Also known as inject and foldl, reduce boils down a list of values
    * into a single value. Memo is the initial state of the reduction, and
    * each successive step of it should be returned by iteratee. The
    * iteratee is passed four arguments: the memo, then the value and index
-   * (or key) of the iteration, and finally a reference to the entire list. 
-   * 
-   * If no memo is passed to the initial invocation of reduce, the iteratee 
-   * is not invoked on the first element of the list. The first element is 
+   * (or key) of the iteration, and finally a reference to the entire list.
+   *
+   * If no memo is passed to the initial invocation of reduce, the iteratee
+   * is not invoked on the first element of the list. The first element is
    * instead passed as the memo in the invocation of the iteratee on the
    * next element in the list.
    */
@@ -127,7 +127,7 @@
   _.foldl = _.reduce
 
   /**
-   * The right-associative version of reduce. Foldr is not as useful 
+   * The right-associative version of reduce. Foldr is not as useful
    * in JavaScript as it would be in a language with lazy evaluation.
    */
 
@@ -147,9 +147,9 @@
   }
 
   /**
-   * Looks through each value in the list, returning the first one that 
-   * passes a truth test (predicate), or undefined if no value passes the 
-   * test. The function returns as soon as it finds an acceptable element, 
+   * Looks through each value in the list, returning the first one that
+   * passes a truth test (predicate), or undefined if no value passes the
+   * test. The function returns as soon as it finds an acceptable element,
    * and doesn't traverse the entire list. predicate is transformed through
    *  iteratee to facilitate shorthand syntaxes.
    */
@@ -175,4 +175,3 @@
   }
 
 }());
-// module.exports = _;
