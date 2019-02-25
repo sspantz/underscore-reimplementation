@@ -188,4 +188,20 @@
     return result;
   }
 
+  /**
+   * Returns true if any of the values in the list pass the predicate truth test.
+   * Short-circuits and stops traversing the list if a true element is found. predicate
+   * is transformed through iteratee to facilitate shorthand syntaxes.
+   */
+  _.some = _.any = function(list, callback) {
+    for (let i = 0; i < list.length; i++) {
+      if (callback === undefined) {
+        if (list[i]) return true;
+      } else {
+        if (callback(list[i], i, list)) return true;
+      }
+    }
+    return false;
+  }
+
 }());
