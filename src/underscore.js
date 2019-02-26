@@ -204,4 +204,23 @@
     return false;
   }
 
+  /**
+   * Looks through each value in the list, returning an array of all the values that
+   * matches the key-value pairs listed in properties.
+   */
+  _.where = function(list, properties) {
+    let result = [];
+    for (let i = 0; i < list.length; i++) {
+      let judge = true;
+      for (let key in properties) {
+        if (properties[key] !== list[i][key]) {
+          judge = false;
+          break;
+        }
+      }
+      if (judge) result.push(list[i])
+    }
+    return result;
+  }
+
 }());

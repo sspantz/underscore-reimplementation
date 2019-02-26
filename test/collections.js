@@ -258,5 +258,20 @@ describe('Collections', function () {
 
   })
 
+  describe('Where Test', function() {
+
+    it("Should return [{title: \'Cymbeline\', author: \'Shakespeare\', year: 1611}, \
+    {title: \'The Tempest\', author: \'Shakespeare\', year: 1611}]", function() {
+      const result = _.where([
+        {title: "Cymbeline", author: "Shakespeare", year: 1611},
+        {title: "The Tempest", author: "Shakespeare", year: 1611},
+        {title: "The Xempest", author: "Shakespeares", year: 1611},
+        {title: "The Sempest", author: "Shakespeares", year: 2611},
+      ], {author: "Shakespeare", year: 1611});
+      expect(result).to.eql([{title: "Cymbeline", author: "Shakespeare", year: 1611},
+      {title: "The Tempest", author: "Shakespeare", year: 1611}]);
+    })
+  })
+
 
 });
