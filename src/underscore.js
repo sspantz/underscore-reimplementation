@@ -223,4 +223,18 @@
     return result;
   }
 
+  _.findWhere = function(list, properties) {
+    let passed = true;
+    for (let i = 0; i < list.length; i++) {
+      for (let key in properties) {
+        if (list[i][key] !== properties[key]) {
+          passed = false;
+          break;
+        }
+      }
+      if (passed) return list[i];
+      else passed = true;
+    }
+    return {};
+  }
 }());

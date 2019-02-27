@@ -273,5 +273,32 @@ describe('Collections', function () {
     })
   })
 
+  describe('FindWhere Test', function() {
+
+    it("Should return {a: 1, b: 2, c: 3}", function() {
+      const result = _.findWhere([{a: 1, b: 2, c: 3},
+                                  {x: 2, a: 1, y: 5},
+                                  {a: 4, b: 3, g: 'z'}],
+                                  {a: 1});
+      expect(result).to.eql({a: 1, b: 2, c: 3});
+    })
+
+    it("Should return {a: 4, b: 3, g: 'z'}", function() {
+      const result = _.findWhere([{a: 1, b: 2, c: 3},
+                                  {x: 2, a: 1, y: 5},
+                                  {a: 4, b: 3, g: 'z'}],
+                                  {b: 3});
+      expect(result).to.eql({a: 4, b: 3, g: 'z'});
+    })
+
+    it("Should return {}", function() {
+      const result = _.findWhere([{a: 1, b: 2, c: 3},
+                                  {x: 2, a: 1, y: 5},
+                                  {a: 4, b: 3, g: 'z'}],
+                                  {g: 3});
+      expect(result).to.eql({});
+    })
+  })
+
 
 });
