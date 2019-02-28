@@ -70,9 +70,10 @@ describe('Collections', function () {
     });
 
     it('should return [4, 5]', function () {
-      const list2 = _.filter(list, function (value) {
+      const list2 = _.select(list, function (value) {
         return value > 3;
       })
+      expect(list2).to.eql([4, 5]);
     });
 
 
@@ -300,5 +301,31 @@ describe('Collections', function () {
     })
   })
 
+  describe('Reject Test', function () {
+
+    const list = [1, 2, 3, 4, 5];
+
+    it('should return [4, 5]', function () {
+      const list2 = _.reject(list, function (value) {
+        return value < 4;
+      })
+      expect(list2).to.eql([4, 5]);
+    });
+
+    it('should return [1, 2, 3]', function () {
+      const list2 = _.reject(list, function (value) {
+        return value > 3;
+      })
+      expect(list2).to.eql([1, 2, 3]);
+    });
+
+
+    it('should return [1, 3, 5]', function () {
+      const list2 = _.reject(list, function (value) {
+        return value % 2 === 0;
+      });
+      expect(list2).to.eql([1, 3, 5]);
+    });
+  })
 
 });

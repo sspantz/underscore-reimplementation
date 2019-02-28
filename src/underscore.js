@@ -76,7 +76,7 @@
    * syntaxes.
    */
 
-  _.filter = function (list, callback) {
+  _.select = _.filter = function (list, callback) {
     const storage = [];
     _.each(list, (value, key, list) => {
       if (callback(value, key, list) === true) {
@@ -86,7 +86,6 @@
     return storage;
   }
 
-  _.select = _.filter
 
   /**
    * _.reduce(list, iteratee, [memo], [context]) Aliases: inject, foldl
@@ -101,7 +100,7 @@
    * instead passed as the memo in the invocation of the iteratee on the
    * next element in the list.
    */
-  _.reduce = function (list, callback, memo) {
+  _.reduce = _.inject = _.foldl = function (list, callback, memo) {
     let result = memo;
     if (Array.isArray(list)) {
       for (let i = 0; i < list.length; i++) {
@@ -123,8 +122,6 @@
     return result;
   }
 
-  _.inject = _.reduce
-  _.foldl = _.reduce
 
   /**
    * The right-associative version of reduce. Foldr is not as useful
@@ -236,5 +233,13 @@
       else passed = true;
     }
     return {};
+  }
+
+  _.reject = function(list, predicate) {
+    let result = [];
+    for (let i = 0; i < list.length; i++) {
+      if (!predicate(list[i], i, list)) result.push(list[i]);
+    }
+    return result;
   }
 }());
