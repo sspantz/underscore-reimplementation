@@ -242,4 +242,12 @@
     }
     return result;
   }
+
+  _.contains = _.include = _.includes = function(list, value, fromIndex) {
+    const begin = fromIndex && !isNaN(fromIndex) && fromIndex < list.length? fromIndex: 0;
+    for (let i = begin; i < list.length; i++) {
+      if (value === list[i]) return true;
+    }
+    return false;
+  }
 }());

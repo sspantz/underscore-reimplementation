@@ -328,4 +328,24 @@ describe('Collections', function () {
     });
   })
 
+  describe("Contains Test", function() {
+
+    it("Should return true", function() {
+      const result = _.contains([1, 2, 3], 3, 'a');
+      expect(result).to.equal(true);
+    })
+
+    it("Should return false", function() {
+      const result = _.contains([1, 2, 3], 1, 1);
+      expect(result).to.equal(false);
+    })
+
+    it("Should return false", function() {
+      const result = _.contains([1, 2, 3], 2, 2);
+      expect(result).to.equal(false);
+    })
+
+  })
+
+
 });
