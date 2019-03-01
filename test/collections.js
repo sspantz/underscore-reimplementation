@@ -331,7 +331,7 @@ describe('Collections', function () {
   describe("Contains Test", function() {
 
     it("Should return true", function() {
-      const result = _.contains([1, 2, 3], 3, 'a');
+      const result = _.contains([1, 2, 3], 1, 'a');
       expect(result).to.equal(true);
     })
 
