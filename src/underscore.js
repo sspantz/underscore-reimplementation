@@ -236,7 +236,7 @@
   }
 
   _.reject = function(list, predicate) {
-    let result = [];
+    const result = [];
     for (let i = 0; i < list.length; i++) {
       if (!predicate(list[i], i, list)) result.push(list[i]);
     }
@@ -249,5 +249,41 @@
       if (value === list[i]) return true;
     }
     return false;
+  }
+
+  _.max = function(list, iteratee) {
+    let max;
+    let obj;
+    if (iteratee === undefined) iteratee = (value) => { return value };
+    if (list === undefined) return Infinity;
+    for (let i = 0; i < list.length; i++) {
+      if (i === 0) {
+        max = iteratee(list[i])
+        obj = list[i];
+      };
+      if (max < iteratee(list[i])) {
+        max = iteratee(list[i]);
+        obj = list[i];
+      }
+    }
+    return obj;
+  }
+
+  _.min = function(list, iteratee) {
+    let min;
+    let obj;
+    if (iteratee === undefined) iteratee = (value) => { return value };
+    if (list === undefined) return Infinity;
+    for (let i = 0; i < list.length; i++) {
+      if (i === 0) {
+        min = iteratee(list[i])
+        obj = list[i];
+      };
+      if (min > iteratee(list[i])) {
+        min = iteratee(list[i]);
+        obj = list[i];
+      }
+    }
+    return obj;
   }
 }());

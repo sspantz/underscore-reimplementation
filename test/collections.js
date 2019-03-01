@@ -331,7 +331,7 @@ describe('Collections', function () {
   describe("Contains Test", function() {
 
     it("Should return true", function() {
-      const result = _.contains([1, 2, 3], 1, 'a');
+      const result = _.contains([1, 2, 3], 3, 'a');
       expect(result).to.equal(true);
     })
 
@@ -347,5 +347,36 @@ describe('Collections', function () {
 
   })
 
+  describe("Max Test", function() {
+
+    it("Should return 3", function() {
+      const result = _.max([1, 3, 0, 3, 2, -1])
+      expect(result).to.equal(3);
+    })
+
+    it("Should return {name: 'curly', age: 60}", function() {
+      const stooges = [{name: 'moe', age: 40},
+                      {name: 'larry', age: 50},
+                      {name: 'curly', age: 60}]
+      const result = _.max(stooges, function(stooges) { return stooges.age});
+      expect(result).to.eql({name: 'curly', age: 60});
+    })
+  })
+
+  describe("Min Test", function() {
+
+    it("Should return -1", function() {
+      const result = _.min([1, 3, 0, 3, 2, -1])
+      expect(result).to.equal(-1);
+    })
+
+    it("Should return {name: 'moe', age: 40}", function() {
+      const stooges = [{name: 'moe', age: 40},
+                      {name: 'larry', age: 50},
+                      {name: 'curly', age: 60}]
+      const result = _.min(stooges, function(stooges) { return stooges.age});
+      expect(result).to.eql({name: 'moe', age: 40});
+    })
+  })
 
 });
