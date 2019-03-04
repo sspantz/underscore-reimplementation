@@ -286,4 +286,12 @@
     }
     return obj;
   }
+
+  _.size = function(list) {
+    let result = 0;
+    for (let key in list) {
+      result++;
+    }
+    return result;
+  }
 }());

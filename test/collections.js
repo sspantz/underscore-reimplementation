@@ -379,4 +379,17 @@ describe('Collections', function () {
     })
   })
 
+  describe("Size Test", function() {
+
+    it("Should return 5", function() {
+      const result = _.size([1, 2, 3, 4, 5]);
+      expect(result).to.equal(5);
+    })
+
+    it("Should return 3", function() {
+      const result = _.size({one: 1, two: 2, three: 3});
+      expect(result).to.equal(3);
+    })
+  })
+
 });
