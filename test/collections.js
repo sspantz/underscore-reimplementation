@@ -399,6 +399,17 @@ describe('Collections', function () {
       expect(result).to.include(1, 2, 3, 4, 5, 6);
     })
 
+    it("Should return a list with the same length", function() {
+      const result = _.shuffle([1, 2, 3, 4, 5, 6]);
+      expect(result.length).to.equal(6);
+    })
+
+    it("Should be the same after sorted", function() {
+      const result = _.shuffle([1, 2, 3, 4, 5, 6]);
+      result.sort();
+      expect(result).to.eql([1, 2, 3, 4, 5, 6].sort());
+    })
+
   })
 
 });
