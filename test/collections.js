@@ -392,4 +392,13 @@ describe('Collections', function () {
     })
   })
 
+  describe("Shuffle Test", function() {
+
+    it("Should return a list with all elements of 1, 2, 3, 4, 5, 6", function() {
+      const result = _.shuffle([1, 2, 3, 4, 5, 6]);
+      expect(result).to.include(1, 2, 3, 4, 5, 6);
+    })
+
+  })
+
 });

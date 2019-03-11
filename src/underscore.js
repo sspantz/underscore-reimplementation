@@ -294,4 +294,23 @@
     }
     return result;
   }
+
+  /**
+   * [shuffle description]
+   * @param  {[array]} list [description]
+   * @return {[array]} result [description]
+   */
+   // Returns a shuffled copy of the list, using a version of the Fisher-Yates shuffle.
+  _.shuffle = function(list) {
+    const result = [];
+    const len = list.length;
+    let randomIndex;
+    for (let i = 0; i < len; i++) {
+      const length = list.length;
+      randomIndex = parseInt(Math.random() * length);
+      result.push(list[randomIndex]);
+      list.splice(randomIndex, 1);
+    }
+    return result;
+  }
 }());
