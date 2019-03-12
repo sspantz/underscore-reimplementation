@@ -313,4 +313,55 @@
     }
     return result;
   }
+
+  _.pickOne = function(list) {
+    let result;
+    let len = 0;
+    for (let key in list) {
+      len++;
+    }
+    const randomIndex = Math.floor(Math.random() * len);
+    if (Array.isArray(list)) {
+      result = list[randomIndex];
+    } else {
+      let counter = 0;
+      const obj = {};
+      for (let key in list) {
+        if (counter === randomIndex) {
+          obj[key] = list[key];
+          result = obj;
+          break;
+        } 
+        counter++;
+      }
+    }
+    return result;
+  }
+
+  _.sample = function(list, n=1) {
+    const isArray = Array.isArray(list);
+    const result = Array.isArray(list)? []: {};
+    if(isArray) {
+      for (let i = 0; i < n; i++) {
+        const one = _.pickOne(list);
+        result.push(one);
+        list.splice(list.indexOf(one), 1);
+      }
+    } else {
+      for (let i = 0; i < n; i++) {
+        const one = _.pickOne(list);
+        let theKey;
+        for (let key in list) {
+          if (one[key] === list[key]) {
+            theKey = key;
+            break;
+          }
+        }
+        result[theKey] = one[theKey];
+        delete list[theKey];
+      }
+    }
+    return result; 
+  }
+
 }());

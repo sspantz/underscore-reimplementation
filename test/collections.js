@@ -412,4 +412,32 @@ describe('Collections', function () {
 
   })
 
+  describe("Sample Test", function() {
+
+    it("Should return an array when it is an array", function() {
+      const result = _.sample([1, 2, 3, 4, 5, 6], 3);
+      expect(Array.isArray(result)).to.equal(true);
+    })
+
+    it("Should return an object when it is an object", function() {
+      const result = _.sample({a: 1, b: 2, c: 3}, 3);
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+      function isObject(obj) {
+        return obj === Object(obj);
+      }
+      expect(isObject(result) && !Array.isArray(result)).to.equal(true);
+    })
+
+    it("Should return an array of 3 elements from [1, 2, 3, 4, 5, 6]", function() {
+      const result = _.sample([1, 2, 3, 4, 5], 3);
+      expect([1, 2, 3, 4, 5, 6]).to.include.members(result);
+    })
+
+    it("Should return an {} of 2 elements from {a: 1, b: 2, c: 3}", function() {
+      const result = _.sample({a: 1, b: 2, c: 3}, 2);
+      expect({a: 1, b: 2, c: 3}).to.include(result);
+    })
+
+  })
+
 });
