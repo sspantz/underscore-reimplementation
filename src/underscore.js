@@ -220,6 +220,15 @@
     return result;
   }
 
+  /**
+   * [findWhere description]
+   * @param  {[object]} list       [description]
+   * @param  {[object]} properties [description]
+   * @return {[object or undefined]}  [description]
+   */
+   // Looks through the list and returns the first value that matches
+   // all of the key-value pairs listed in properties.
+   // If no match is found, or if list is empty, undefined will be returned.
   _.findWhere = function(list, properties) {
     let passed = true;
     for (let i = 0; i < list.length; i++) {
@@ -232,7 +241,7 @@
       if (passed) return list[i];
       else passed = true;
     }
-    return {};
+    return undefined;
   }
 
   _.reject = function(list, predicate) {

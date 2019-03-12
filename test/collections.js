@@ -292,12 +292,12 @@ describe('Collections', function () {
       expect(result).to.eql({a: 4, b: 3, g: 'z'});
     })
 
-    it("Should return {}", function() {
+    it("Should return undefined", function() {
       const result = _.findWhere([{a: 1, b: 2, c: 3},
                                   {x: 2, a: 1, y: 5},
                                   {a: 4, b: 3, g: 'z'}],
                                   {g: 3});
-      expect(result).to.eql({});
+      expect(result).to.eql(undefined);
     })
   })
 
