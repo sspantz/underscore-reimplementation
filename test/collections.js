@@ -412,6 +412,20 @@ describe('Collections', function () {
 
   })
 
+  describe("PickOne Test", function() {
+
+    it("", function() {
+      const result = _.pickOne([1, 2, 3, 4, 5, 6]);
+      expect(result).to.be.oneOf([1, 2, 3, 4, 5, 6]);
+    })
+
+    it("", function() {
+      const result = _.pickOne({a: 1, b: 2, c: 3});
+      expect({a: 1, b: 2, c: 3}).to.deep.include(result);
+    })
+
+  })
+
   describe("Sample Test", function() {
 
     it("Should return an array when it is an array", function() {

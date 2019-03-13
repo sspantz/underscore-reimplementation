@@ -6,6 +6,7 @@
    * instead of `window` for `WebWorker` support.
    */
   var root = (typeof self == 'object' && self.self == self && self) ||
+    // @ts-ignore
     (typeof global == 'object' && global.global == global && global) ||
     this || {};
 
@@ -24,7 +25,9 @@
   // the browser, add `_` as a global object.
   // (`nodeType` is checked to ensure that `module`
   // and `exports` are not HTML elements.)
+  // @ts-ignore
   if (typeof exports != 'undefined' && !exports.nodeType) {
+    // @ts-ignore
     if (typeof module != 'undefined' && !module.nodeType && module.exports) {
       exports = module.exports = _;
     }
@@ -224,11 +227,11 @@
    * [findWhere description]
    * @param  {[object]} list       [description]
    * @param  {[object]} properties [description]
-   * @return {[object or undefined]}  [description]
+   * @return {[object, undefined]} result     [description]
    */
-   // Looks through the list and returns the first value that matches
-   // all of the key-value pairs listed in properties.
-   // If no match is found, or if list is empty, undefined will be returned.
+  // Looks through the list and returns the first value that matches
+  // all of the key-value pairs listed in properties.
+  // If no match is found, or if list is empty, undefined will be returned.
   _.findWhere = function(list, properties) {
     let passed = true;
     for (let i = 0; i < list.length; i++) {
@@ -309,20 +312,20 @@
    * @param  {[array]} list [description]
    * @return {[array]} result [description]
    */
-   // Returns a shuffled copy of the list, using a version of the Fisher-Yates shuffle.
+  // Returns a shuffled copy of the list, using a version of the Fisher-Yates shuffle.
   _.shuffle = function(list) {
     const result = [];
     const len = list.length;
-    let randomIndex;
+    let randomIndex = 0;
     for (let i = 0; i < len; i++) {
-      const length = list.length;
-      randomIndex = parseInt(Math.random() * length);
+      randomIndex = Math.floor(Math.random() * list.length);
       result.push(list[randomIndex]);
       list.splice(randomIndex, 1);
     }
     return result;
   }
 
+  // pickOne does not exist in original underscore.js
   _.pickOne = function(list) {
     let result;
     let len = 0;
@@ -340,7 +343,7 @@
           obj[key] = list[key];
           result = obj;
           break;
-        } 
+        }
         counter++;
       }
     }
@@ -370,7 +373,7 @@
         delete list[theKey];
       }
     }
-    return result; 
+    return result;
   }
 
 }());
