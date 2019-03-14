@@ -454,4 +454,19 @@ describe('Collections', function () {
 
   })
 
+  describe("GroupBy Test", function() {
+
+    it("Should return {1: [1.3], 2: [2.1, 2.4]}", function() {
+      var result = _.groupBy([1.3, 2.1, 2.4], function(num) {
+        return Math.floor(num);
+      });
+      expect(result).to.eql({1: [1.3], 2: [2.1, 2.4]});
+    })
+
+    it(`Should return {3: ["one", "two"], 5: ["three"]}`, function() {
+      var result = _.groupBy(['one', 'two', 'three'], 'length');
+      expect(result).to.eql({3: ["one", "two"], 5: ["three"]});
+    })
+  })
+
 });

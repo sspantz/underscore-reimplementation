@@ -376,4 +376,23 @@
     return result;
   }
 
+/**
+ * _.groupBy(list, iteratee, [context])
+ * Splits a collection into sets, grouped by the result of running each value
+ * through iteratee. If iteratee is a string instead of a function, groups by
+ * the property named by iteratee on each of the values.
+ */
+  _.groupBy = function(list, iteratee) {
+    var result = {};
+    var callback;
+    if (typeof iteratee === "string") callback = value => value[iteratee];
+    else callback = iteratee;
+    for (let i = 0; i < list.length; i++) {
+      var key = callback(list[i], i, list);
+      if (result[key] === undefined) result[key] = [];
+      result[key].push(list[i]);
+    }
+    return result;
+  }
+
 }());
