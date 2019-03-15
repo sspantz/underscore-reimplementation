@@ -469,4 +469,45 @@ describe('Collections', function () {
     })
   })
 
+  describe("IndexBy Test", function() {
+
+    it(`Should return { 
+                        "40": {name: 'moe', age: 40},
+                        "50": {name: 'larry', age: 50},
+                        "60": {name: 'curly', age: 60}
+                      }`,
+        function() {
+          var stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+          var result = _.indexBy(stooges, 'age');
+          expect(result).to.eql({
+                                  "40": {name: 'moe', age: 40},
+                                  "50": {name: 'larry', age: 50},
+                                  "60": {name: 'curly', age: 60}
+                                })
+    })
+
+    it(`Should return { "curly": { "age": 60, "name": "curly" },
+                        "larry": { "age": 50, "name": "larry" },
+                        "moe": { "age": 40, "name": "moe" } }`, function() {
+      var stooges = [{name: 'moe', age: 40}, {name: 'larry', age: 50}, {name: 'curly', age: 60}];
+      var result = _.indexBy(stooges, (value, key, list) => {
+        return "name";
+      });
+      expect(result).to.eql({
+                              "curly": {
+                                "age": 60,
+                                "name": "curly"
+                              },
+                              "larry": {
+                                "age": 50,
+                                "name": "larry"
+                              },
+                              "moe": {
+                                "age": 40,
+                                "name": "moe"
+                              }
+                            });
+    })
+  })
+
 });

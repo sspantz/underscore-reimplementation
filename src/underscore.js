@@ -1,13 +1,12 @@
 (function () {
-
   /**
    *  Establish the root object, `window` (`self`) in the browser, `global`
    * on the server, or `this` in some virtual machines. We use `self`
    * instead of `window` for `WebWorker` support.
    */
-  var root = (typeof self == 'object' && self.self == self && self) ||
+  var root = (typeof self == "object" && self.self == self && self) ||
     // @ts-ignore
-    (typeof global == 'object' && global.global == global && global) ||
+    (typeof global == "object" && global.global == global && global) ||
     this || {};
 
 
@@ -26,9 +25,9 @@
   // (`nodeType` is checked to ensure that `module`
   // and `exports` are not HTML elements.)
   // @ts-ignore
-  if (typeof exports != 'undefined' && !exports.nodeType) {
+  if (typeof exports != "undefined" && !exports.nodeType) {
     // @ts-ignore
-    if (typeof module != 'undefined' && !module.nodeType && module.exports) {
+    if (typeof module != "undefined" && !module.nodeType && module.exports) {
       exports = module.exports = _;
     }
     exports._ = _;
@@ -37,11 +36,10 @@
   }
 
 
-  _.each = function (list, callback) {
+  _.each = function each(list, callback) {
     if (Array.isArray(list)) {
       for (let i = 0; i < list.length; i++) {
-        callback(list[i], i, list);
-      }
+        callback(list[i], i, list); }
     } else {
       for (let key in list) {
         callback(list[key], key, list);
@@ -85,9 +83,9 @@
       if (callback(value, key, list) === true) {
         storage.push(value);
       }
-    })
+    });
     return storage;
-  }
+  };
 
 
   /**
@@ -270,20 +268,20 @@
     if (list === undefined) return Infinity;
     for (let i = 0; i < list.length; i++) {
       if (i === 0) {
-        max = iteratee(list[i])
+        max = iteratee(list[i]);
         obj = list[i];
-      };
+      }
       if (max < iteratee(list[i])) {
         max = iteratee(list[i]);
         obj = list[i];
       }
     }
     return obj;
-  }
+  };
 
   _.min = function(list, iteratee) {
-    let min;
-    let obj;
+    var min;
+    var obj;
     if (iteratee === undefined) iteratee = (value) => { return value };
     if (list === undefined) return Infinity;
     for (let i = 0; i < list.length; i++) {
@@ -353,7 +351,7 @@
   _.sample = function(list, n=1) {
     const isArray = Array.isArray(list);
     const result = Array.isArray(list)? []: {};
-    if(isArray) {
+    if (isArray) {
       for (let i = 0; i < n; i++) {
         const one = _.pickOne(list);
         result.push(one);
@@ -393,6 +391,20 @@
       result[key].push(list[i]);
     }
     return result;
-  }
+  };
 
+  /**
+   * Given a list, and an iteratee function that returns a key for each element
+   * in the list (or a property name), returns an object with an index of each
+   * item. Just like groupBy, but for when you know your keys are unique.
+   */
+  _.indexBy = function(list, iteratee) {
+    var result = {};
+    _.each(list, (value, key, list) => {
+      let theKey = (typeof iteratee === "string")? value[iteratee]: value[iteratee(value, key, list)];
+      if (result[theKey] === undefined) result[theKey] = {};
+      result[theKey] = value;
+    });
+    return result;
+  };
 }());
