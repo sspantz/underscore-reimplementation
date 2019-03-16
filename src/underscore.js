@@ -407,4 +407,19 @@
     });
     return result;
   };
+
+  /**
+   * Sorts a list into groups and returns a count for the number of objects in
+   * each group. Similar to groupBy, but instead of returning a list of values,
+   * returns a count for the number of values in that group.
+   */
+  _.countBy = function(list, iteratee) {
+    var result = {};
+    _.each(list, (value, key, list) => {
+      var theKey = iteratee(value, key, list);
+      if (result[theKey] === undefined) result[theKey] = 0;
+      result[theKey]++;
+    });
+    return result;
+  }
 }());

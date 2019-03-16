@@ -510,4 +510,23 @@ describe('Collections', function () {
     })
   })
 
+  describe("CountBy Test", function() {
+
+    it("Should count element by iteratee []", function() {
+      var result = _.countBy([1, 2, 3, 4, 5], function(num) {
+        return num % 2 === 0? 'even': 'odd';
+      })
+      expect(result).to.eql({odd: 3, even: 2});
+    })
+
+    it("Should count element by iteratee with {}", function() {
+      var result = _.countBy({a: 1, b: 2, c: 1, d: 3, e: {f: 1}},
+        function(value, key, list) {
+          return typeof value === "object"? "other" : value > 1? "bigger": "smaller"; 
+        })
+      expect(result).to.eql({smaller: 2, bigger: 2, other: 1});
+    })
+  })
+
+
 });
