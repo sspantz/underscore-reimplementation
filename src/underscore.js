@@ -422,4 +422,17 @@
     });
     return result;
   }
+
+  /**
+   * Creates a real Array from the list (anything that can be iterated over).
+   * Useful for transmuting the arguments object.
+   */
+  _.toArray = function(list) {
+    var result = [];
+    if (Array.isArray(list)) return list;
+    else for (let key in list) {
+      result.push(list[key]);  
+    }; 
+    return result;
+  }
 }());

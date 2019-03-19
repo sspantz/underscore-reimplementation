@@ -528,5 +528,17 @@ describe('Collections', function () {
     })
   })
 
+  describe("ToArray Test", function() {
+
+    it("Should return [2, 3, 4]", function() {
+      var result = (function(){ return _.toArray(arguments).slice(1); })(1, 2, 3, 4);
+      expect(result).to.eql([2, 3, 4]);
+    })
+
+    it("Should return [1, 2, 3]", function() {
+      var result = _.toArray({a: 1, b: 2, c: 3});
+      expect(result).to.eql([1, 2, 3]);
+    })
+  })
 
 });
