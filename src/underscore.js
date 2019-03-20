@@ -435,4 +435,19 @@
     }; 
     return result;
   }
+
+  /**
+   * Split list into two arrays: one whose elements all satisfy predicate and
+   * one whose elements all do not satisfy predicate. predicate is transformed
+   * through iteratee to facilitate shorthand syntaxes.
+   * _.partition([0, 1, 2, 3, 4, 5], isOdd); => [[1, 3, 5], [0, 2, 4]]
+   */
+  _.partition = function(list, predicate) {
+    var result = [[], []];
+    _.each(list, (value, key, list) => {
+      if (predicate(value, key, list)) result[0].push(value);
+      else result[1].push(value);
+    })
+    return result;
+  }
 }());

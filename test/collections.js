@@ -541,4 +541,23 @@ describe('Collections', function () {
     })
   })
 
+  describe("Partition Test", function() {
+
+    it("Should return [[1, 3, 5], [0, 2, 4]]", function() {
+      var result = _.partition([0, 1, 2, 3, 4, 5], (value) => {
+        if (value % 2 == 1) return true;
+        else return false;
+      })
+      expect(result).to.eql([[1, 3, 5], [0, 2, 4]])
+    })
+
+    it("Should return [[1, 3, 5, 7]]", function() {
+      var result = _.partition([1, 3, 5, 7], (value) => {
+        if (value % 2 == 1) return true;
+        else return false;
+      })
+      expect(result).to.eql([[1, 3, 5, 7], []])
+    })
+  })
+
 });
