@@ -450,4 +450,18 @@
     })
     return result;
   }
+
+  /**
+   * Calls the method named by methodName on each value in the list. Any extra
+   * arguments passed to invoke will be forwarded on to the method invocation.
+   * _.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
+   * => [[1, 5, 7], [1, 2, 3]]
+   */
+  _.invoke = function(list, methodName, ...arguments) {
+    var result = list;
+    _.each(result, (value, key, list) => {
+      list[key] = value[methodName](...arguments) || methodName(value, ...arguments);
+    })
+    return result;
+  }
 }());

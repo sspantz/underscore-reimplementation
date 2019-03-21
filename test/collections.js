@@ -560,4 +560,23 @@ describe('Collections', function () {
     })
   })
 
+  describe("Invoke Test", function() {
+
+    it("Should return [[1, 5, 7], [1, 2, 3]", function() {
+      var result = _.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
+      expect(result).to.eql([[1, 5, 7], [1, 2, 3]]);
+    })
+
+    it("Should return {a: 'A', b: 'B', c: 'C'}", function() {
+      var result = _.invoke({a: 'a', b: 'b', c: 'c'}, 'toUpperCase');
+      expect(result).to.eql({a: 'A', b: 'B', c: 'C'});
+    })
+
+    it("Should return [[7, 5, 1], [3, 2, 1]", function() {
+      var result = _.invoke([[5, 1, 7], [3, 2, 1]], 'sort', ((a, b) => b - a));
+      expect(result).to.eql([[7, 5, 1], [3, 2, 1]]);
+    })
+
+  })
+
 });

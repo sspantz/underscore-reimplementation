@@ -20,7 +20,7 @@ _.map(list, callback);
 - [x] every
 - [x] some
 - [x] contains
-- [ ] invoke
+- [x] invoke
 - [ ] pluck
 - [x] max
 - [x] min
@@ -33,6 +33,7 @@ _.map(list, callback);
 - [x] toArray
 - [x] size
 - [x] partition
+- [ ] compact
 ### Arrays
 - [ ] first
 - [ ] initial
