@@ -579,4 +579,16 @@ describe('Collections', function () {
 
   })
 
+  describe("Pluck Test", function() {
+
+    it(`["moe", "larry", "curly"]`,
+      function() {
+        var result = _.pluck([{name: 'moe', age: 40},
+                              {name: 'larry', age: 50},
+                              {name: 'curly', age: 60}],
+                              'name');
+        expect(result).to.eql(["moe", "larry", "curly"])
+      })
+  }) 
+
 });

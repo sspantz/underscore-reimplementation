@@ -464,4 +464,31 @@
     })
     return result;
   }
+
+  /**
+   * _.pluck(list, propertyName) A convenient version of what is perhaps the
+   * most common use-case for map: extracting a list of property values. var
+   * stooges = [{name: 'moe', age: 40},
+   * {name: 'larry', age: 50},
+   * {name: 'curly', age: 60}];
+   * _.pluck(stooges, 'name'); => ["moe", "larry", "curly"] 
+   */
+  _.pluck = function(list, propertyName) {
+    var result = [];
+    // Get create a object {}
+    var counter = {};
+    // times of value appearance of the propertyName
+    _.each(list, (value, key, list) => {
+      // Initial counter[value]
+      var key = value[propertyName];
+      counter[key] = counter[key] || 0;    
+      // count the appearance of value
+      counter[key]++;
+    })
+    console.log(counter);
+    // find the most appearance of counter[value] and store in result
+    result = _.max(list);
+    console.log(result);
+
+  }
 }());
