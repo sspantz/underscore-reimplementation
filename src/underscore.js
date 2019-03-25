@@ -483,12 +483,24 @@
       var key = value[propertyName];
       counter[key] = counter[key] || 0;    
       // count the appearance of value
-      counter[key]++;
+      counter[key] += 1;
     })
-    console.log(counter);
-    // find the most appearance of counter[value] and store in result
-    result = _.max(list);
-    console.log(result);
 
+    var maxValue;
+    _.each(counter, (value, key, list) => {
+      var isFirstKey = true;
+      if (isFirstKey) {
+        maxValue = value; 
+        isFirstKey = false;
+      } else if (maxValue < value) {
+        maxValue = value; 
+      }
+    }) 
+
+    _.each(counter, (value, key, list) => {
+      if (value == maxValue) result.push(key);
+    })
+
+    return result;
   }
 }());
