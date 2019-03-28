@@ -1,19 +1,19 @@
-(function () {
+(function() {
   /**
    *  Establish the root object, `window` (`self`) in the browser, `global`
    * on the server, or `this` in some virtual machines. We use `self`
    * instead of `window` for `WebWorker` support.
    */
-  var root = (typeof self == "object" && self.self == self && self) ||
-    // @ts-ignore
+  var root =
+    (typeof self == "object" && self.self == self && self) ||
     (typeof global == "object" && global.global == global && global) ||
-    this || {};
-
+    this ||
+    {};
 
   var previousUnderscore = root._;
 
   // Create a safe reference to the Underscore object for use below.
-  var _ = function (obj) {
+  var _ = function(obj) {
     if (obj instanceof _) return obj;
     if (!(this instanceof _)) return new _(obj);
     this._wrapped = obj;
@@ -35,11 +35,11 @@
     root._ = _;
   }
 
-
   _.each = function each(list, callback) {
     if (Array.isArray(list)) {
       for (let i = 0; i < list.length; i++) {
-        callback(list[i], i, list); }
+        callback(list[i], i, list);
+      }
     } else {
       for (let key in list) {
         callback(list[key], key, list);
@@ -61,7 +61,7 @@
    * => [1, 3]
    */
 
-  _.map = function (list, callback) {
+  _.map = function(list, callback) {
     const storage = [];
     _.each(list, (item, key, collection) => {
       storage.push(callback(item, key, collection));
@@ -77,7 +77,7 @@
    * syntaxes.
    */
 
-  _.select = _.filter = function (list, callback) {
+  _.select = _.filter = function(list, callback) {
     const storage = [];
     _.each(list, (value, key, list) => {
       if (callback(value, key, list) === true) {
@@ -86,7 +86,6 @@
     });
     return storage;
   };
-
 
   /**
    * _.reduce(list, iteratee, [memo], [context]) Aliases: inject, foldl
@@ -101,7 +100,7 @@
    * instead passed as the memo in the invocation of the iteratee on the
    * next element in the list.
    */
-  _.reduce = _.inject = _.foldl = function (list, callback, memo) {
+  _.reduce = _.inject = _.foldl = function(list, callback, memo) {
     let result = memo;
     if (Array.isArray(list)) {
       for (let i = 0; i < list.length; i++) {
@@ -121,28 +120,27 @@
       }
     }
     return result;
-  }
-
+  };
 
   /**
    * The right-associative version of reduce. Foldr is not as useful
    * in JavaScript as it would be in a language with lazy evaluation.
    */
 
-  _.reduceRight = function (list, callback, memo) {
+  _.reduceRight = function(list, callback, memo) {
     if (Array.isArray(list)) {
       list.reverse();
     } else {
       let len = 0;
       for (let key in list) {
         len++;
-      };
+      }
       list.length = len;
       Array.prototype.reverse.call(list);
       delete list.length;
-    };
+    }
     return _.reduce(list, callback, memo);
-  }
+  };
 
   /**
    * Looks through each value in the list, returning the first one that
@@ -152,7 +150,7 @@
    *  iteratee to facilitate shorthand syntaxes.
    */
 
-  _.find = function (list, callback) {
+  _.find = function(list, callback) {
     let result;
     let obj = {};
     if (Array.isArray(list)) {
@@ -170,13 +168,13 @@
       }
     }
     return undefined;
-  }
+  };
 
   _.every = function(list, callback) {
     let result = true;
     if (Array.isArray(list)) {
       for (let i = 0; i < list.length; i++) {
-        if (callback(list[i], i , list) === false) return false;
+        if (callback(list[i], i, list) === false) return false;
       }
     } else {
       for (let key in list) {
@@ -184,7 +182,7 @@
       }
     }
     return result;
-  }
+  };
 
   /**
    * Returns true if any of the values in the list pass the predicate truth test.
@@ -200,7 +198,7 @@
       }
     }
     return false;
-  }
+  };
 
   /**
    * Looks through each value in the list, returning an array of all the values that
@@ -216,10 +214,10 @@
           break;
         }
       }
-      if (judge) result.push(list[i])
+      if (judge) result.push(list[i]);
     }
     return result;
-  }
+  };
 
   /**
    * [findWhere description]
@@ -243,7 +241,7 @@
       else passed = true;
     }
     return undefined;
-  }
+  };
 
   _.reject = function(list, predicate) {
     const result = [];
@@ -251,20 +249,24 @@
       if (!predicate(list[i], i, list)) result.push(list[i]);
     }
     return result;
-  }
+  };
 
   _.contains = _.include = _.includes = function(list, value, fromIndex) {
-    const begin = fromIndex && !isNaN(fromIndex) && fromIndex < list.length? fromIndex: 0;
+    const begin =
+      fromIndex && !isNaN(fromIndex) && fromIndex < list.length ? fromIndex : 0;
     for (let i = begin; i < list.length; i++) {
       if (value === list[i]) return true;
     }
     return false;
-  }
+  };
 
   _.max = function(list, iteratee) {
     let max;
     let obj;
-    if (iteratee === undefined) iteratee = (value) => { return value };
+    if (iteratee === undefined)
+      iteratee = value => {
+        return value;
+      };
     if (list === undefined) return Infinity;
     for (let i = 0; i < list.length; i++) {
       if (i === 0) {
@@ -282,20 +284,23 @@
   _.min = function(list, iteratee) {
     var min;
     var obj;
-    if (iteratee === undefined) iteratee = (value) => { return value };
+    if (iteratee === undefined)
+      iteratee = value => {
+        return value;
+      };
     if (list === undefined) return Infinity;
     for (let i = 0; i < list.length; i++) {
       if (i === 0) {
-        min = iteratee(list[i])
+        min = iteratee(list[i]);
         obj = list[i];
-      };
+      }
       if (min > iteratee(list[i])) {
         min = iteratee(list[i]);
         obj = list[i];
       }
     }
     return obj;
-  }
+  };
 
   _.size = function(list) {
     let result = 0;
@@ -303,7 +308,7 @@
       result++;
     }
     return result;
-  }
+  };
 
   /**
    * [shuffle description]
@@ -321,7 +326,7 @@
       list.splice(randomIndex, 1);
     }
     return result;
-  }
+  };
 
   // pickOne does not exist in original underscore.js
   _.pickOne = function(list) {
@@ -346,11 +351,11 @@
       }
     }
     return result;
-  }
+  };
 
-  _.sample = function(list, n=1) {
+  _.sample = function(list, n = 1) {
     const isArray = Array.isArray(list);
-    const result = Array.isArray(list)? []: {};
+    const result = Array.isArray(list) ? [] : {};
     if (isArray) {
       for (let i = 0; i < n; i++) {
         const one = _.pickOne(list);
@@ -372,14 +377,14 @@
       }
     }
     return result;
-  }
+  };
 
-/**
- * _.groupBy(list, iteratee, [context])
- * Splits a collection into sets, grouped by the result of running each value
- * through iteratee. If iteratee is a string instead of a function, groups by
- * the property named by iteratee on each of the values.
- */
+  /**
+   * _.groupBy(list, iteratee, [context])
+   * Splits a collection into sets, grouped by the result of running each value
+   * through iteratee. If iteratee is a string instead of a function, groups by
+   * the property named by iteratee on each of the values.
+   */
   _.groupBy = function(list, iteratee) {
     var result = {};
     var callback;
@@ -401,7 +406,10 @@
   _.indexBy = function(list, iteratee) {
     var result = {};
     _.each(list, (value, key, list) => {
-      let theKey = (typeof iteratee === "string")? value[iteratee]: value[iteratee(value, key, list)];
+      let theKey =
+        typeof iteratee === "string"
+          ? value[iteratee]
+          : value[iteratee(value, key, list)];
       if (result[theKey] === undefined) result[theKey] = {};
       result[theKey] = value;
     });
@@ -421,7 +429,7 @@
       result[theKey]++;
     });
     return result;
-  }
+  };
 
   /**
    * Creates a real Array from the list (anything that can be iterated over).
@@ -430,11 +438,12 @@
   _.toArray = function(list) {
     var result = [];
     if (Array.isArray(list)) return list;
-    else for (let key in list) {
-      result.push(list[key]);  
-    }; 
+    else
+      for (let key in list) {
+        result.push(list[key]);
+      }
     return result;
-  }
+  };
 
   /**
    * Split list into two arrays: one whose elements all satisfy predicate and
@@ -447,9 +456,9 @@
     _.each(list, (value, key, list) => {
       if (predicate(value, key, list)) result[0].push(value);
       else result[1].push(value);
-    })
+    });
     return result;
-  }
+  };
 
   /**
    * Calls the method named by methodName on each value in the list. Any extra
@@ -460,10 +469,11 @@
   _.invoke = function(list, methodName, ...arguments) {
     var result = list;
     _.each(result, (value, key, list) => {
-      list[key] = value[methodName](...arguments) || methodName(value, ...arguments);
-    })
+      list[key] =
+        value[methodName](...arguments) || methodName(value, ...arguments);
+    });
     return result;
-  }
+  };
 
   /**
    * _.pluck(list, propertyName) A convenient version of what is perhaps the
@@ -471,7 +481,7 @@
    * stooges = [{name: 'moe', age: 40},
    * {name: 'larry', age: 50},
    * {name: 'curly', age: 60}];
-   * _.pluck(stooges, 'name'); => ["moe", "larry", "curly"] 
+   * _.pluck(stooges, 'name'); => ["moe", "larry", "curly"]
    */
   _.pluck = function(list, propertyName) {
     var result = [];
@@ -481,26 +491,41 @@
     _.each(list, (value, key, list) => {
       // Initial counter[value]
       var key = value[propertyName];
-      counter[key] = counter[key] || 0;    
+      counter[key] = counter[key] || 0;
       // count the appearance of value
       counter[key] += 1;
-    })
+    });
 
     var maxValue;
     _.each(counter, (value, key, list) => {
       var isFirstKey = true;
       if (isFirstKey) {
-        maxValue = value; 
+        maxValue = value;
         isFirstKey = false;
       } else if (maxValue < value) {
-        maxValue = value; 
+        maxValue = value;
       }
-    }) 
+    });
 
     _.each(counter, (value, key, list) => {
       if (value == maxValue) result.push(key);
-    })
+    });
 
     return result;
-  }
-}());
+  };
+
+  /** _.sortBy(list, iteratee, [context])
+   *  Returns a (stably) sorted copy of list, ranked in ascending order by the
+   *  results of running each value through iteratee. iteratee may also be the
+   *  string name of the property to sort by (eg. length).
+   */
+  _.sortBy = function(list, iteratee) {
+    var result = list;
+    if (typeof iteratee == "function")
+      result.sort((a, b) => (iteratee(a) < iteratee(b) ? -1 : 1));
+    else if (typeof iteratee == "string") {
+      result.sort((a, b) => (a[iteratee] < b[iteratee] ? -1 : 1));
+    } else throw TypeError;
+    return result;
+  };
+})();

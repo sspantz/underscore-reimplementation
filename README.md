@@ -21,7 +21,7 @@ _.map(list, callback);
 - [x] some
 - [x] contains
 - [x] invoke
-- [ ] pluck
+- [x] pluck
 - [x] max
 - [x] min
 - [ ] sortBy
@@ -33,7 +33,6 @@ _.map(list, callback);
 - [x] toArray
 - [x] size
 - [x] partition
-- [ ] compact
 ### Arrays
 - [ ] first
 - [ ] initial
