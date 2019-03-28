@@ -1,6 +1,6 @@
 {
   "name": "undersocre",
-  "version": "0.1.1",
+  "version": "0.0.99",
   "description": "a reimplementation of undersocre.js",
   "main": "index.js",
   "scripts": {
