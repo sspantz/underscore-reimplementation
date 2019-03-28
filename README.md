@@ -1,13 +1,18 @@
 # Introduction
+
 underscore.js library reimplementation
+
 ## Usage
+
 ```javascript
-const _ = require('underscore');
+const _ = require("underscore");
 _.map(list, callback);
 ```
+
 ## Progress
 
 ### Collections
+
 - [x] each
 - [x] map
 - [x] reduce
@@ -24,7 +29,7 @@ _.map(list, callback);
 - [x] pluck
 - [x] max
 - [x] min
-- [ ] sortBy
+- [x] sortBy
 - [x] groupBy
 - [x] indexBy
 - [x] countBy
@@ -33,7 +38,9 @@ _.map(list, callback);
 - [x] toArray
 - [x] size
 - [x] partition
+
 ### Arrays
+
 - [ ] first
 - [ ] initial
 - [ ] last
@@ -55,7 +62,9 @@ _.map(list, callback);
 - [ ] findIndex
 - [ ] findLastIndex
 - [ ] range
+
 ### Functions
+
 - [ ] bind
 - [ ] bindAll
 - [ ] partial
@@ -71,7 +80,9 @@ _.map(list, callback);
 - [ ] negate
 - [ ] compose
 - [ ] restArguments
+
 ### Objects
+
 - [ ] keys
 - [ ] allKeys
 - [ ] values
@@ -115,7 +126,9 @@ _.map(list, callback);
 - [ ] isNaN
 - [ ] isNull
 - [ ] isUndefined
+
 ### Utility
+
 - [ ] noConflict
 - [ ] identity
 - [ ] constant
@@ -130,7 +143,10 @@ _.map(list, callback);
 - [ ] result
 - [ ] now
 - [ ] template
+
 ### OOP Style
+
 ### Chaining
+
 - [ ] chain
 - [ ] value
