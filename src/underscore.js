@@ -35,7 +35,7 @@
     root._ = _;
   }
 
-  _.each = function each(list, callback) {
+  _.each = _.forEach = function each(list, callback, context) {
     if (Array.isArray(list)) {
       for (let i = 0; i < list.length; i++) {
         callback(list[i], i, list);
@@ -61,7 +61,7 @@
    * => [1, 3]
    */
 
-  _.map = function(list, callback) {
+  _.map = _.collect = function(list, callback) {
     const storage = [];
     _.each(list, (item, key, collection) => {
       storage.push(callback(item, key, collection));
