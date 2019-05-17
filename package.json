@@ -4,7 +4,7 @@
   "description": "a reimplementation of undersocre.js",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write \"**/*.{js,jsx,json}\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,json}\" \"test/**/*.{js,jsx,json}\"",
     "lint": "eslint \"**/*.{js,jsx}\" --quiet",
     "test": "mocha"
   },
