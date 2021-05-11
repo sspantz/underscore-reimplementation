@@ -35,8 +35,23 @@
     root._ = _;
   }
 
+  _.isArrayLike = function(obj) {
+    if (
+      obj &&
+      typeof obj === "object" &&
+      obj.length >= 0 &&
+      obj.length === Math.floor(obj.length) &&
+      obj.length < 4294967296
+    )
+      return true;
+    return false;
+  };
+
+  /**
+   * _.each(list, iteratee, [context])
+   */
   _.each = _.forEach = function each(list, callback, context) {
-    if (Array.isArray(list)) {
+    if (_.isArrayLike(list)) {
       for (let i = 0; i < list.length; i++) {
         callback(list[i], i, list);
       }

@@ -626,4 +626,33 @@ describe("Collections", function() {
       ]);
     });
   });
+  describe("ArrayLike Test", function() {
+    it("[] should be ArrayLike", function() {
+      expect(_.isArrayLike(new Array())).to.be.true;
+    });
+
+    it("arguments should be ArrayLike", function() {
+      var args = (function() {
+        return arguments;
+      })();
+      expect(_.isArrayLike(args)).to.be.true;
+    });
+
+    it("{} should not be ArrayLike", function() {
+      expect(_.isArrayLike({})).to.be.false;
+    });
+    it("Primitives should not be ArrayLike", function() {
+      expect(
+        _.isArrayLike(8) ||
+          _.isArrayLike("abc") ||
+          _.isArrayLike(true) ||
+          _.isArrayLike(undefined) ||
+          _.isArrayLike(null)
+      ).to.be.false;
+    });
+
+    it("Functions should not be ArrayLike", function() {
+      expect(_.isArrayLike(() => null)).to.be.false;
+    });
+  });
 });
